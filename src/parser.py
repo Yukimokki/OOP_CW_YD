@@ -11,7 +11,7 @@ class Parser(ABC):
 class HH(Parser):
     """
     Класс для работы с API Headhunter
-    родиетльский класс - Parser
+    родительский класс - Parser
     """
 
     def __init__(self, keyword):
