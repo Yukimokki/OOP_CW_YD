@@ -28,6 +28,6 @@ class HH(Parser):
             self.vacancies.extend(vacancies)
             self.params['page'] += 1
 
-hh = HH("backend-Python")
-hh.load_vacancies()
-print(hh.vacancies)
+# hh = HH("backend-Python")
+# hh.load_vacancies()
+# print(hh.vacancies)
