@@ -14,6 +14,7 @@ class FileWork(ABC):
 
 
 class WorkWithJson(FileWork):
+    # Add filepath with os or pathlib
 
     def read_file(self):
         with open("data/vacancies.json", "r", encoding="utf-8") as file:
@@ -25,7 +26,9 @@ class WorkWithJson(FileWork):
 
     @staticmethod
     def get_data(criterion):
-        """Метод получения данных из файла по указанным критериям"""
+        """
+        Метод получения данных из файла по указанным критериям
+        """
         criterion_vac = []
         with open("data/vacancies.json", "r", encoding="utf8") as file:
             vacancies = json.load(file)

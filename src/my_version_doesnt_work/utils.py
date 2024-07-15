@@ -1,4 +1,4 @@
-from src.vacancies import JobVacancy
+from src.my_version_doesnt_work.vacancy import JobVacancy
 import json
 
 
@@ -34,7 +34,7 @@ def sorting(vacancies, n: int):
     for vac in vacancies:
         try:
             pass
-            sort_vac.append(JobVacancy(vac['name'], vac['salary'], vac['url'], vac["snippet"]['requirement'],vac['area']['name']))
+            sort_vac.append(JobVacancy(vac['name'], vac['id'], vac['salary'],vac['url'], vac["snippet"]['requirement'],vac['area']['name'],vac['experience']['name']))
         except TypeError as e:
             print(f"Ошибка при обработке вакансии: {vac}")
             print(e)
@@ -42,3 +42,17 @@ def sorting(vacancies, n: int):
 
     sorted_vacancies = sorted(sort_vac, key=lambda x: x.salary["to"], reverse=True)
     return sorted_vacancies[:n]
+
+class HH_functions:
+    """
+    класс, где определяются функции для работы по запросами
+    """
+
+    def filter(self):
+        pass
+
+    def append(self):
+        pass
+
+    def delete(self):
+        pass
