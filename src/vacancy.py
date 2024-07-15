@@ -17,6 +17,11 @@ class JobVacancy:
             f"Опыт: {self.experience}\n"
         )
 
+    def currency(self):
+        return (
+        f"Валюта : {self.salary['currency']}\n"
+        )
+
     def __repr__(self):
         return f"Vacancy({self.name}, {self.salary}, {self.url}, {self.requirement},{self.experience})"
 

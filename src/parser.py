@@ -19,6 +19,7 @@ class HH(Parser):
         self.headers = {'User-Agent':'HH-User-Agent'}
         self.params = {'text': keyword, 'page':0, 'per_page':50}
         self.vacancies = []
+        super().__init__()
 
 
     def load_vacancies(self, *args, **kwargs):
