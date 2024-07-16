@@ -1,4 +1,4 @@
-from src.my_version_doesnt_work.vacancy import JobVacancy
+from src.my_version_draft.vacancy_dataclass import JobVacancy
 import json
 
 

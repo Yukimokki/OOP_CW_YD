@@ -34,7 +34,7 @@ def sorting(vacancies, n: int):
     for vac in vacancies:
         try:
             pass
-            sort_vac.append(JobVacancy(vac['name'], vac['salary'], vac['url'], vac["snippet"]['requirement'],vac['area']['name']))
+            sort_vac.append(JobVacancy(vac['name'], vac['salary'], vac['url'], vac["snippet"]['requirement'],vac['area']['name'], vac['salary']['currency']))
         except TypeError as e:
             print(f"Ошибка при обработке вакансии: {vac}")
             print(e)

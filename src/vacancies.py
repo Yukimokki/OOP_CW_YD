@@ -1,5 +1,5 @@
 class JobVacancy:
-    def __init__(self, name: str, salary: dict, url: str, requirement: str, area: str):
+    def __init__(self, name: str, salary: dict, url: str, requirement: str, area: str, currency: str = 'RUR'):
         if not isinstance(salary, dict):
             raise TypeError("Salary must be a dictionary")
         self.name = name
@@ -7,15 +7,17 @@ class JobVacancy:
         self.url = url
         self.requirement = requirement
         self.area = area
+        self.currency = currency
 
     def __str__(self):
         return (
             f"Название: {self.name}\n"
             f"Зарплата: от {self.salary['from']} до {self.salary['to']} {self.salary['currency']}\n"
+            f"Валюта: {self.currency}\n"
             f"Ссылка: {self.url}\n"
             f"Требования: {self.requirement}\n"
             f"Регион: {self.area}\n"
-        )
+                    )
 
     def __repr__(self):
         return f"Vacancy({self.name}, {self.salary}, {self.url}, {self.requirement}, {self.area})"
