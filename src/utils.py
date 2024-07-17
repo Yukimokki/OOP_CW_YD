@@ -5,8 +5,10 @@ from config import ROOT_DIR
 
 
 def vac_user():
-    """Приводит полученные данные к данным для вывода"""
-    FILEPATH = os.path.join(ROOT_DIR, 'data', 'file.json')
+    """
+    Приводит полученные данные к данным для вывода
+    """
+    FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies_processed.json')
     with open(FILEPATH, "r", encoding="utf8") as f:
         vacancies = json.load(f)
     user_vac = []
