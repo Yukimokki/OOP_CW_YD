@@ -1,11 +1,13 @@
 from src.vacancies import JobVacancy
 import json
+import os
+from config import ROOT_DIR
 
 
 def vac_user():
     """Приводит полученные данные к данным для вывода"""
-
-    with open("data/vacancies.json", "r", encoding="utf8") as f:
+    FILEPATH = os.path.join(ROOT_DIR, 'data', 'file.json')
+    with open(FILEPATH, "r", encoding="utf8") as f:
         vacancies = json.load(f)
     user_vac = []
     for vac in vacancies:

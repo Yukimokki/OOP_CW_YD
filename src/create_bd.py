@@ -1,6 +1,7 @@
 import json
 from abc import ABC, abstractmethod
 import os
+from config import ROOT_DIR
 
 
 class FileWork(ABC):
@@ -17,19 +18,22 @@ class FileWork(ABC):
 class WorkWithJson(FileWork):
 
     def read_file(self):
-        with open("data/vacancies.json", "r", encoding="utf-8") as file:
-            return json.load(file)
+        FILEPATH = os.path.join(ROOT_DIR, 'data', 'file.json')
+        with open(FILEPATH, "r", encoding="utf-8") as datafile:
+            return json.load(datafile)
 
     def save_file(self, data):
-        with open("data/vacancies.json", "w", encoding="utf-8") as file:
-            json.dump(data, file,  ensure_ascii=False, indent=4)
+        FILEPATH = os.path.join(ROOT_DIR, 'data', 'file.json')
+        with open(FILEPATH, "w", encoding="utf-8") as datafile:
+            json.dump(data, datafile,  ensure_ascii=False, indent=4)
 
     @staticmethod
     def get_data(criterion):
         """Метод получения данных из файла по указанным критериям"""
         criterion_vac = []
-        with open("data/vacancies.json", "r", encoding="utf8") as file:
-            vacancies = json.load(file)
+        FILEPATH = os.path.join(ROOT_DIR, 'data', 'file.json')
+        with open(FILEPATH, "r", encoding="utf8") as datafile:
+            vacancies = json.load(datafile)
             for vac in vacancies:
                 if not vac["snippet"]["requirement"]:
                     continue

@@ -13,7 +13,7 @@ class Vacancy:
     salary_from: int | None = None
     salary_to: int | None = None
     rate: float = 1.0
-    #rate: float = field(init = False, repr = False)
+    #rate: float = field(init = False, repr = True)
     salary_from_converted: float = field(init = False, repr = False)
     salary_to_converted: float = field(init = False, repr = False)
 
@@ -47,5 +47,6 @@ class Vacancy:
         return eq_from and eq_to
 
 #pprint(inspect.getmembers(Vacancy, inspect.isfunction))
-Vac = Vacancy('Java', 'http://xxxxx.com', 'USA', 'None', 'USD', 10000, 12000, 89.24,)
+Vac = Vacancy('Java', 'http://xxxxx.com', 'USA', 'None')
+print(Vac)
 print(Vac.salary_from_converted, Vac.salary_to_converted)
