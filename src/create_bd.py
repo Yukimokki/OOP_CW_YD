@@ -14,21 +14,37 @@ class FileWork(ABC):
     def save_file(self):
         pass
 
+    @abstractmethod
+    def del_file(self):
+        pass
+
 
 class WorkWithJson(FileWork):
 
     def read_file(self):
-        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies_raw.json')
+        """
+        читает файл с вакансиями
+
+        """
+        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
         with open(FILEPATH, "r", encoding="utf-8") as datafile:
             return json.load(datafile)
 
+
     def save_file(self, data):
-        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies_processed.json')
+        """
+        сохраняет файл с вакансиями
+        """
+        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
         with open(FILEPATH, "w", encoding="utf-8") as datafile:
             json.dump(data, datafile,  ensure_ascii=False, indent=4)
 
     def del_file(self):
-        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies_raw.json')
+        """
+        очищает файл с вакансиями
+        :return:
+        """
+        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
         with open(FILEPATH, "w", encoding="utf-8") as datafile:
             pass
 
@@ -39,15 +55,13 @@ class WorkWithJson(FileWork):
         """
         criterion_vac = []
         empty_list = []
-        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies_raw.json')
+        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
         with open(FILEPATH, "r", encoding="utf8") as datafile:
             vacancies = json.load(datafile)
-            #print(criterion,currency_choice)
             for vac in vacancies:
                 if criterion in vac.keys() and vac['salary'] != None:
                     if currency_choice == vac['salary']['currency']:
                         criterion_vac.append(vac)
-                        #print('добавлена', vac[criterion], vac['salary']['currency'])
                 else:
                     empty_list.append(vac)
                     continue
