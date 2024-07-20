@@ -44,6 +44,6 @@ class HH(Parser):
     def connect(self):
         return requests.get(self._url).status_code
 
-# hh = HH("backend-Python")
-# hh.load_vacancies()
-# print(hh.vacancies)
+hh = HH("C++")
+hh.load_vacancies()
+

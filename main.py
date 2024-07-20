@@ -18,7 +18,7 @@ def main():
     choice_vac = fv.get_data(name_criterion, currency_choice)
     fv.save_file(choice_vac)
     processed_vacancies = vac_user()
-    print(processed_vacancies)
+    #print(processed_vacancies)
     n = input('Введите количество вакансий для просмотра: \n')
     top_vacancies = sorting(processed_vacancies, int(n))
     for vac in top_vacancies:
