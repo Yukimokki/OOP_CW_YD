@@ -9,16 +9,15 @@ def main():
     hh = HH(user_vacancy)
     if hh.connect != 200:
         print(f"Ошибка соединения")
+        return
     hh.load_vacancies()
     vacancies = hh.vacancies
     fv = WorkWithJson()
-    #fv.save_file(vacancies)
+    fv.save_file(vacancies)
     name_criterion = input('Введите критерий для отбора вакансий: \n')
     currency_choice = input('Введите желаемую валюту: \n')
-    choice_vac = fv.get_data(name_criterion, currency_choice)
-    fv.save_file(choice_vac)
+    fv.get_data(name_criterion, currency_choice)
     processed_vacancies = vac_user()
-    #print(processed_vacancies)
     n = input('Введите количество вакансий для просмотра: \n')
     top_vacancies = sorting(processed_vacancies, int(n))
     for vac in top_vacancies:

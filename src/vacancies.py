@@ -9,15 +9,6 @@ class JobVacancy:
         self.area = area
         self.currency = currency
 
-    # def cast_from_hh_data(self, vacancies: dict):
-    #     vacancy_sel = []
-    #     for vac in vacancies:
-    #         vac['name'] = vacancies['name']
-    #         vac['salary_from'] = vacancies['salary']['from']
-    #         vac['salary_to'] = vacancies['salary']['to']
-    #         vacancy_sel.append(vac)
-    #     return vacancy_sel
-
     def __str__(self):
         """
         распечатывает вакансию в виде, удобном для чтения

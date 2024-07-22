@@ -20,13 +20,19 @@ class FileWork(ABC):
 
 
 class WorkWithJson(FileWork):
+    def __init__(self):
+        self.filepath = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
+
+    # def print_filepath(self):
+    #     filepath = self.filepath
+    #     print(filepath)
 
     def read_file(self):
         """
         читает файл с вакансиями
 
         """
-        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
+        FILEPATH = self.filepath
         with open(FILEPATH, "r", encoding="utf-8") as datafile:
             return json.load(datafile)
 
@@ -35,7 +41,7 @@ class WorkWithJson(FileWork):
         """
         сохраняет файл с вакансиями
         """
-        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
+        FILEPATH = self.filepath
         with open(FILEPATH, "w", encoding="utf-8") as datafile:
             json.dump(data, datafile,  ensure_ascii=False, indent=4)
 
@@ -44,7 +50,7 @@ class WorkWithJson(FileWork):
         очищает файл с вакансиями
         :return:
         """
-        FILEPATH = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
+        FILEPATH = self.filepath
         with open(FILEPATH, "w", encoding="utf-8") as datafile:
             pass
 
@@ -59,8 +65,10 @@ class WorkWithJson(FileWork):
         with open(FILEPATH, "r", encoding="utf8") as datafile:
             vacancies = json.load(datafile)
             for vac in vacancies:
-                if criterion in vac.keys() and vac['salary'] != None:
-                    if currency_choice == vac['salary']['currency']:
+                requirements = vac['snippet']['requirement'].lower() if vac['snippet']['requirement'] else ''
+                responsibility = vac['snippet']['responsibility'].lower() if vac['snippet']['responsibility'] else ''
+                if criterion.lower() in requirements or criterion in responsibility and vac['salary'] != None:
+                    if vac['salary'] and currency_choice.lower() == vac['salary'].get('currency').lower():
                         criterion_vac.append(vac)
                 else:
                     empty_list.append(vac)
@@ -68,14 +76,3 @@ class WorkWithJson(FileWork):
 
             #print(len(criterion_vac),len(empty_list))
         return criterion_vac
-        #datafile.write(criterion_vac)
-
-
-
-
-
-
-
-# Vacancy = WorkWithJson()
-# Vacancy.get_data('name', 'RUR')
-# print(Vacancy)
