@@ -1,86 +1,28 @@
-.idea/
-poetry.lock
+from src.parser import HH
+from src.utils import vac_user, sorting
+from src.create_bd import WorkWithJson
+from src.vacancies import JobVacancy
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
 
-# C extensions
-*.so
+def main():
+    user_vacancy = input('Введите вакансию для поиска на сайте hh.ru: \n')
+    hh = HH(user_vacancy)
+    if hh.connect != 200:
+        print(f"Ошибка соединения")
+        return
+    hh.load_vacancies()
+    vacancies = hh.vacancies
+    fv = WorkWithJson()
+    fv.save_file(vacancies)
+    name_criterion = input('Введите критерий для отбора вакансий: \n')
+    currency_choice = input('Введите желаемую валюту: \n')
+    fv.get_data(name_criterion, currency_choice)
+    processed_vacancies = vac_user()
+    n = input('Введите количество вакансий для просмотра: \n')
+    top_vacancies = sorting(processed_vacancies, int(n))
+    for vac in top_vacancies:
+        print(vac)
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject data/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
+if __name__ == '__main__':
+    main()
